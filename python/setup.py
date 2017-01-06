@@ -7,7 +7,7 @@ def version():
     """Read version from Git tag, falling back to .version file."""
     try:  # Use latest git tag
         version = subprocess.check_output(
-                ['git', 'describe', '--tags']).decode().rstrip()
+            ['git', 'describe', '--tags']).decode().rstrip()
         with open('./.version', 'w') as f:
             print("Storing {} in .version".format(version))
             f.write(version)
@@ -29,6 +29,9 @@ setup(
     license='LGPL',
     version=version(),
     description='The tools I always wished I had on hand',
+    entry_points={
+        'console_scripts': ['toolbox=toolbox.main:main']
+    },
     classifiers=[
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
