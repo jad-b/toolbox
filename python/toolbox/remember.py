@@ -26,9 +26,8 @@ Requirements:
 
 Issues:
     * If you change the function signature, it won't know.
-    * If you only want certain kwargs passed, you'll need to provide the rest of
-    them with whatever passes for a no-op.
-    *
+    * If you only want certain kwargs passed, you'll need to provide the rest
+      of them with whatever passes for a no - op.
 """
 import atexit
 import shelve

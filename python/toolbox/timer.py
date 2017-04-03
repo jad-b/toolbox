@@ -20,15 +20,15 @@ class Timer(object):
         return result
 
     def __enter__(self):
-        self.start_time = time.time()
+        self.start_time = time.perf_counter()
 
     def __exit__(self, exc_type, exc_value, traceback):
-        self.end_time = time.time()
+        self.end_time = time.perf_counter()
         self.length = self.end_time - self.start_time
 
     def __str__(self):
         if self.length is None:     # Still running
-            curr_len = time.time() - self.start_time
+            curr_len = time.perf_counter() - self.start_time
             return 'Code has been running for {} seconds'.format(curr_len)
         else:
             return 'Code ran in {} seconds'.format(self.length)

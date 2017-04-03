@@ -9,7 +9,9 @@ def discover(name):
     """
     import importlib
     try:
-        return importlib.import_module("toolbox." + name)
+        mod = importlib.import_module("toolbox." + name)
+        if hasattr(mod, "parse"):
+            return mod
     except ImportError:
         return None
 
@@ -35,9 +37,9 @@ def main():
 
     args = parser.parse_args()
 
-    utility = discover(args.name)
-    if utility:
-        utility.parse(args.args)
+    utility_module = discover(args.name)
+    if utility_module:
+        utility_module.parse(args.args)
     else:
         parser.print_help()
 
